@@ -115,6 +115,9 @@ header {
   }
 
   /* Bootstrap Overrides */
+  h5 {
+      line-height: 1.5em;
+  }
   .rounded {
       border-radius: 1rem !important;
   }

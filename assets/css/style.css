@@ -1,0 +1,122 @@
+/* Global Classes */
+
+body {
+    background: #eee;
+}
+
+/* Custom Classes */
+#gameui {
+    height: 0px;
+}
+
+.transform {
+    -webkit-transition: all 1s ease;  
+    -moz-transition: all 1s ease;  
+    -o-transition: all 1s ease;  
+    -ms-transition: all 1s ease;  
+    transition: all 1s ease;
+}
+
+.transform-active {
+    height: 450px !important;
+    top: 20% !important;
+}
+
+.guess {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 100px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.wrapper {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-left: -450px;
+    max-width: 900px;
+    width: 70%;
+    background: #fff;
+    height: 450px;
+}
+
+.innerwrapper {
+    position: fixed;
+    padding: 20px;
+    height: 0px;
+    top: 50%;
+    background: #fff;
+    opacity: 0.6;
+    max-width: 900px;
+    width: 100%;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+}
+
+
+
+header {
+    position: relative;
+    background-color: black;
+    height: 30vh;
+    min-height: 2rem;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  header video {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+  
+  header .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #ccc;
+    opacity: 0.3;
+    z-index: 1;
+  }
+  
+  @media (pointer: coarse) and (hover: none) {
+    header {
+      background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+    }
+    header video {
+      display: none;
+    }
+  }
+
+  /* Bootstrap Overrides */
+  .rounded {
+      border-radius: 1rem !important;
+  }
+  .rounded-top {
+      border-top-right-radius: 1rem !important;
+      border-top-left-radius: 1rem !important;
+}

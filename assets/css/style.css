@@ -5,6 +5,10 @@ body {
 }
 
 /* Custom Classes */
+.teaser {
+    margin-top: -30px;
+}
+
 #gameui {
     height: 0px;
 }
@@ -18,14 +22,14 @@ body {
 }
 
 .transform-active {
-    height: 450px !important;
+    height: 500px !important;
     top: 20% !important;
 }
 
 .guess {
     text-align: center;
     font-size: 5em;
-    margin-top: 100px;
+    margin-top: 1em;
 }
 
 
@@ -41,22 +45,20 @@ body {
     position: fixed;
     top: 20%;
     left: 50%;
-    margin-left: -450px;
-    max-width: 900px;
-    width: 70%;
+    margin-left: -400px;
+    width: 800px;
     background: #fff;
-    height: 450px;
+    height: 500px;
 }
 
 .innerwrapper {
     position: fixed;
     padding: 20px;
     height: 0px;
-    top: 50%;
+    top: 60%;
     background: #fff;
-    opacity: 0.6;
-    max-width: 900px;
-    width: 100%;
+    opacity: 0.8;
+    width: inherit;
 }
 
 .jumbotron {
@@ -68,15 +70,15 @@ body {
 header {
     position: relative;
     background-color: black;
-    height: 30vh;
-    min-height: 2rem;
+    height: 40vh;
+    min-height: 3rem;
     width: 100%;
     overflow: hidden;
   }
   
   header video {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     width: 100%;
     height: auto;

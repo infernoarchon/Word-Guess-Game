@@ -12,15 +12,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="wrapper shadow mb-5 bg-white rounded transform">
+        <div class="wrapper shadow mb-5 bg-white rounded transform row">
             <header id="banner" class="rounded-top">
-                    <div class="overlay"></div>
-                    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-                        <source src="assets/images/concertoloop.mp4" type="video/mp4">
-                    </video>
+                    <img class="teaser img-fluid" src="assets/images/concertostart.png">
             </header>
             <div class="innerwrapper rounded transform">
-                <h1 class="font-weight-light">Classical Hangman</h1>
+                <h1 id="introtitle" class="font-weight-light">Classical Hangman</h1>
                 <div id="intro" class="visible"><h5 class="font-weight-light">Guess the classical composer one letter at a time, hangman style! Press any key to begin.</h5></div>
                 <div id="gameui" class="hidden">
                     <h1 class="guess font-weight-light">_ _ _ _ _ _ _ _ _ _ </h1>

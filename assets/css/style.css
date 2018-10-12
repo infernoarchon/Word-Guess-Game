@@ -44,9 +44,9 @@ body {
     display: none;
 }
 
-.hiddenletter {
+/* .hiddenletter {
     color: transparent;
-}
+} */
 
 .visible {
     display: block;

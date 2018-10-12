@@ -3,12 +3,14 @@
     document.onkeyup = function(event) {
         if(gamestarted === false) {
             hangman.start();
+            // Switch to Game UI
             document.getElementById("intro").setAttribute("class","hidden");
             document.getElementById("introtitle").setAttribute("class","hidden");
             document.getElementById("banner").innerHTML = '<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/images/concertoloop.mp4" type="video/mp4"></video>';
             $('.transform').toggleClass('transform-active');
         }
     }
+    // Advance to next word
     document.getElementById("skip").onclick = function() {
         hangman.cleanup();
         hangman.getword();
@@ -56,12 +58,14 @@
                 playTrack(currentComposer);
                 globalcomposer = currentComposer;
             }
-            // Add composers Here
             getrandom();
             delete composers[globalcomposer]
             console.log(composers)
         }
     }
+
+// Add Composers Here
+
     var composers = {
         "mozart": {
             "song":"./assets/sounds/sonatak331.mp3"
@@ -79,10 +83,8 @@
             "song":"./assets/sounds/balladesop23.mp3"
             },              
     }
- // Skip Word
-//  document.getElementById("skip").onclick = function() {
-//     hangman.getword()
-// }
+
+
 // - Generate blank spaces according to composer name length and play music
 // - Record letter press, only call next function if letter status is either incorrect or correct
 // - Loop through each letter to check if it's correct

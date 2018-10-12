@@ -7,6 +7,8 @@
     var globalcomposer = "";
    // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
+        document.getElementById("word2").setAttribute("class","row justify-content-center wordwrapper")
+        document.getElementById("word2").setAttribute("class","hidden")
         if(allguesses.includes(event.key)) {
             return
         }
@@ -91,14 +93,21 @@
                         lettergroup[i].setAttribute("class","revealedletter blankspace")
                         shownletters++;
                         if (shownletters === globalcomposer.length){
+                            for (var i = 0; i < globalcomposer.length;i++) {
+                                var orig = document.getElementById("word").childNodes;
+                                var cln = orig[i].cloneNode(true);
+                                cln.setAttribute("class","revealedletter blankspace blankspace2")
+                                document.getElementById("word2").appendChild(cln);
+                                document.getElementById("word2").setAttribute("class","fadeanswer row justify-content-center wordwrapper")
+                            }
                             hangman.cleanup();
                             hangman.getword();
+                        } else {
+                            document.getElementById("word2").innerHTML = ""
                         }
                         }
                     }
-                } else {
-                    lastguesscorrect = false
-                }
+                } 
             }
         }
     }

@@ -127,13 +127,22 @@ header {
   }
 
   /* Bootstrap Overrides */
-  h5 {
-      line-height: 1.5em;
-  }
-  .rounded {
-      border-radius: 1rem !important;
-  }
-  .rounded-top {
-      border-top-right-radius: 1rem !important;
-      border-top-left-radius: 1rem !important;
+h5 {
+    line-height: 1.5em;
 }
+.rounded {
+    border-radius: 1rem !important;
+}
+.rounded-top {
+    border-top-right-radius: 1rem !important;
+    border-top-left-radius: 1rem !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 870px;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    text-align: right;
+  }

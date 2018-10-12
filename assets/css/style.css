@@ -6,7 +6,7 @@ body {
 
 /* Custom Classes */
 .teaser {
-    margin-top: -30px;
+    margin-top: -5%;
 }
 
 #gameui {
@@ -23,7 +23,7 @@ body {
 
 .transform-active {
     height: 500px !important;
-    top: 20% !important;
+    top: 100px !important;
 }
 
 .guess {
@@ -43,11 +43,12 @@ body {
 
 .wrapper {
     position: fixed;
-    top: 20%;
+    top: 100px;
     left: 50%;
     margin-left: -400px;
     width: 800px;
     background: #fff;
+    overflow: auto;
     height: 500px;
 }
 
@@ -55,7 +56,7 @@ body {
     position: fixed;
     padding: 20px;
     height: 0px;
-    top: 60%;
+    top: 450px;
     background: #fff;
     opacity: 0.8;
     width: inherit;
@@ -70,7 +71,7 @@ body {
 header {
     position: relative;
     background-color: black;
-    height: 40vh;
+    height: 350px;
     min-height: 3rem;
     width: 100%;
     overflow: hidden;
@@ -78,7 +79,7 @@ header {
   
   header video {
     position: absolute;
-    top: 55%;
+    top: 200px;
     left: 50%;
     width: 100%;
     height: auto;

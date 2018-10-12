@@ -14,22 +14,6 @@ document.onkeyup = function(event) {
 
 // Answers
 
-var composers = {
-    "mozart": {
-        "name":"mozart",
-        "song":"../sounds/somesonata.mp3"
-    },
-    "debussy": {
-        "name":"debussy",
-        "song":"../sounds/clairdelune.mp3"
-    },
-    "beethoven": {
-        "name":"beethoven",
-        "song":"../sounds/moonlight.mp3"
-    }
-}
-
-console.log(Object.keys(composers).length)
 
 // console.log(mozart.name.length) to get artist name length
 
@@ -38,10 +22,24 @@ var hangman = {
     start() {
         gamestarted = true;
         document.getElementById("gameui").setAttribute("class","visible");
-        hangman.generateword()
+        hangman.getword()
     },
-    generateword() {
-        var random = Math.floor((Math.random() * Object.keys(composers).length));
+    getword : function() {
+        var composers = {
+            "mozart": {
+                "name":"mozart",
+                "song":"../sounds/somesonata.mp3"
+            },
+            "debussy": {
+                "name":"debussy",
+                "song":"../sounds/clairdelune.mp3"
+            },
+            "beethoven": {
+                "name":"beethoven",
+                "song":"../sounds/moonlight.mp3"
+            }
+        }
+        var random = Math.floor((Math.random() * Object.keys(composers).length))
         var currentComposer = Object.keys(composers)[random]
         console.log(currentComposer)
     }

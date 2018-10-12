@@ -5,6 +5,7 @@
     var userGuess;
     var globalaudio = "";
     var globalcomposer = "";
+    var wins = 0;
    // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
         document.getElementById("word2").setAttribute("class","row justify-content-center wordwrapper")
@@ -16,7 +17,11 @@
             userGuess = event.key;
             // Create Letter Blocks
             var letterguess = document.createElement("div");
-            letterguess.setAttribute("class","letterblock");
+            if (globalcomposer.indexOf(userGuess) === -1) {
+                letterguess.setAttribute("class","letterblock wrongletterblock");    
+            } else {
+                letterguess.setAttribute("class","letterblock"); 
+            }
             letterguess.textContent = userGuess
             document.getElementById("guesses").appendChild(letterguess);
             allguesses.push(userGuess)
@@ -29,7 +34,12 @@
             document.getElementById("banner").innerHTML = '<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/images/concertoloop.mp4" type="video/mp4"></video>';
             $('.transform').toggleClass('transform-active');
         }
-        hangman.checkletter()
+        if (wins < 4) {
+            hangman.checkletter()
+        }
+        if (wins === 4) {
+            hangman.youwin()
+        }
     }
 
     // Game Functions
@@ -39,6 +49,10 @@
             gamestarted = true;
             document.getElementById("gameui").setAttribute("class","visible");
             hangman.getword();
+        },
+        youwin : function () {
+            hangman.cleanup()
+            document.getElementById("endmessage").textContent = "Congratulations! You Did Not Die!";
         },
         cleanup : function() {
             userGuess = ""
@@ -100,6 +114,7 @@
                                 document.getElementById("word2").appendChild(cln);
                                 document.getElementById("word2").setAttribute("class","fadeanswer row justify-content-center wordwrapper")
                             }
+                            wins++
                             hangman.cleanup();
                             hangman.getword();
                         } else {

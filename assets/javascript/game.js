@@ -31,7 +31,7 @@
                     for (var i=0; i < x.length; i++) {
                         var blank = document.createElement("div");
                         blank.setAttribute("class","blankspace hiddenletter");
-                        blank.textContent = "&"
+                        blank.textContent = x.charAt(i);
                         document.getElementById("word").appendChild(blank);
                     }
                 }
@@ -46,17 +46,20 @@
             // Add composers Here
             var composers = {
                 "mozart": {
-                    "name":"mozart",
                     "song":"./assets/sounds/sonatak331.mp3"
                     },
                 "debussy": {
-                    "name":"debussy",
                     "song":"./assets/sounds/clairdelune.mp3"
                     },
                 "beethoven": {
-                    "name":"beethoven",
                     "song":"./assets/sounds/moonlight.mp3"
-                    }
+                    },
+                "tchaikovsky": {
+                    "song":"./assets/sounds/october.mp3"
+                    },
+                "chopin": {
+                    "song":"./assets/sounds/balladesop23.mp3"
+                    },              
             }
             getrandom();
         }
@@ -66,4 +69,4 @@
 // - Loop through each letter to check if it's correct
 // - If correct, assign boolean and print letter in blank space
 // - If incorrect, assign boolean and print letter on bottom
-// - If correct guesses counter === compoaser name length, stop music, refresh guess counter and load next word
+// - If all correct letters are guessed stop music, refresh guess counter, delete property, and load next word

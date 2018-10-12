@@ -30,8 +30,8 @@
                 var createspace = function(x) {
                     for (var i=0; i < x.length; i++) {
                         var blank = document.createElement("div");
-                        blank.setAttribute("class","blankspace");
-                        blank.textContent = "_";
+                        blank.setAttribute("class","blankspace hiddenletter");
+                        blank.textContent = "&"
                         document.getElementById("word").appendChild(blank);
                     }
                 }

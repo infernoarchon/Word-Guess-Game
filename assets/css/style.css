@@ -33,12 +33,18 @@ body {
 }
 
 .blankspace {
-    display: inline;
+    display: block;
     margin: 10px;
+    border-bottom: 5px solid black;
+    width: 5%;
 }
 
 .hidden {
     display: none;
+}
+
+.hiddenletter {
+    color: transparent;
 }
 
 .visible {

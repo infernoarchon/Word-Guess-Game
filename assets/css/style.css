@@ -32,6 +32,10 @@ body {
     margin-top: 1em;
 }
 
+.blankspace {
+    display: inline;
+    margin: 10px;
+}
 
 .hidden {
     display: none;

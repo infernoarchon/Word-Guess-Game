@@ -33,11 +33,38 @@ body {
     text-transform: uppercase;
 }
 
+.wrongguess {
+    background-color: red;
+}
+
+#guesses {
+    margin-top: 1em;
+}
+
+.letterblock {
+    width: 2em;
+    height: 2em;
+    text-transform: uppercase;
+    font-weight: 900;
+    line-height: 2em;
+    text-align: center;
+    border: 1px solid #666;
+    margin: 0.5em;
+}
+
+.letterblockcorrect {
+    background-color: lightgreen;
+}
+
 .blankspace {
     display: block;
     margin: 10px;
     border-bottom: 5px solid black;
     width: 5%;
+}
+
+.revealedletter{
+    color: black !important;
 }
 
 .hidden {

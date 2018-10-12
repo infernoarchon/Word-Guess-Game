@@ -1,6 +1,24 @@
-   // Start the Game
-    var gamestarted = false
+   // Global Variables
+    var gamestarted = false;
+    var allguesses = [];
+    var shownletters = 0;
+    var userGuess;
+    var globalaudio = "";
+    var globalcomposer = "";
+   // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
+        if(allguesses.includes(event.key)) {
+            return
+        }
+        if(globalcomposer && event.keyCode >= 65 && event.keyCode <= 90) {
+            userGuess = event.key;
+            // Create Letter Blocks
+            var letterguess = document.createElement("div");
+            letterguess.setAttribute("class","letterblock");
+            letterguess.textContent = userGuess
+            document.getElementById("guesses").appendChild(letterguess);
+            allguesses.push(userGuess)
+        }
         if(gamestarted === false) {
             hangman.start();
             // Switch to Game UI
@@ -9,16 +27,10 @@
             document.getElementById("banner").innerHTML = '<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/images/concertoloop.mp4" type="video/mp4"></video>';
             $('.transform').toggleClass('transform-active');
         }
-    }
-    // Advance to next word
-    document.getElementById("skip").onclick = function() {
-        hangman.cleanup();
-        hangman.getword();
+        hangman.checkletter()
     }
 
-    // Game Mechanics
-    var globalaudio = "";
-    var globalcomposer = "";
+    // Game Functions
     var hangman = {
         // Start Game
         start : function() {
@@ -27,19 +39,27 @@
             hangman.getword();
         },
         cleanup : function() {
+            userGuess = ""
             globalaudio.pause()
+            shownletters=0;
+            allguesses = [];
+            globalcomposer = "";
             // Get the <ul> element with id="myList"
             var list = document.getElementById("word");
-
             // As long as <ul> has a child node, remove it
             while (list.hasChildNodes()) {   
                 list.removeChild(list.firstChild);
+            }
+            var glist = document.getElementById("guesses");
+            while (glist.hasChildNodes()) {   
+                glist.removeChild(glist.firstChild);
             }
         },
         getword : function() {
             var getrandom = function() {
                 var random = Math.floor((Math.random() * Object.keys(composers).length));
                 var currentComposer = Object.keys(composers)[random];
+                // Create Blank Spaces
                 var createspace = function(x) {
                     for (var i=0; i < x.length; i++) {
                         var blank = document.createElement("div");
@@ -60,7 +80,26 @@
             }
             getrandom();
             delete composers[globalcomposer]
-            console.log(composers)
+        },
+        checkletter : function() {
+            for (var i = 0; i < globalcomposer.length; i++) {
+                var lettergroup = document.getElementById("word").childNodes
+                if (lettergroup[i].textContent === userGuess) {
+                    lastguesscorrect = true
+                    for (var i = 0; i < globalcomposer.length; i++) {
+                        if (lettergroup[i].textContent === userGuess ) {
+                        lettergroup[i].setAttribute("class","revealedletter blankspace")
+                        shownletters++;
+                        if (shownletters === globalcomposer.length){
+                            hangman.cleanup();
+                            hangman.getword();
+                        }
+                        }
+                    }
+                } else {
+                    lastguesscorrect = false
+                }
+            }
         }
     }
 

@@ -1,4 +1,5 @@
-   // Global Variables
+$(document).ready(function() {  
+  // Global Variables
     var gamestarted = false;
     var allguesses = [];
     var shownletters = 0;
@@ -6,6 +7,7 @@
     var globalaudio = "";
     var globalcomposer = "";
     var wins = 0;
+    var strikes = 10;
    // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
         document.getElementById("word2").setAttribute("class","row justify-content-center wordwrapper")
@@ -18,7 +20,10 @@
             // Create Letter Blocks
             var letterguess = document.createElement("div");
             if (globalcomposer.indexOf(userGuess) === -1) {
-                letterguess.setAttribute("class","letterblock wrongletterblock");    
+                letterguess.setAttribute("class","letterblock wrongletterblock");   
+                strikes = strikes - 1;
+                var getheart = document.getElementById("heartwrapper");
+                getheart.removeChild(getheart.firstChild);
             } else {
                 letterguess.setAttribute("class","letterblock"); 
             }
@@ -31,8 +36,12 @@
             // Switch to Game UI
             document.getElementById("intro").setAttribute("class","hidden");
             document.getElementById("introtitle").setAttribute("class","hidden");
-            document.getElementById("banner").innerHTML = '<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/images/concertoloop.mp4" type="video/mp4"></video>';
+            document.getElementById("banner").innerHTML = '<div id="heartwrapper"></div><video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/images/concertoloop.mp4" type="video/mp4"></video>';
+            hangman.lifecounter();
             $('.transform').toggleClass('transform-active');
+        }
+        if (strikes === 0) {
+            hangman.youlose()
         }
         if (wins < 4) {
             hangman.checkletter()
@@ -52,14 +61,19 @@
         },
         youwin : function () {
             hangman.cleanup()
-            document.getElementById("endmessage").textContent = "Congratulations! You Did Not Die!";
+            document.getElementById("endmessage").textContent = "You've escaped! You are no longer in treble.";
         },
+        youlose : function () {
+            hangman.cleanup()
+            document.getElementById("endmessage").textContent = "You died! Guess this isn't really your forte.";
+        },        
         cleanup : function() {
             userGuess = ""
             globalaudio.pause()
             shownletters=0;
             allguesses = [];
             globalcomposer = "";
+            strikes = 10;
             // Get the <ul> element with id="myList"
             var list = document.getElementById("word");
             // As long as <ul> has a child node, remove it
@@ -70,6 +84,29 @@
             while (glist.hasChildNodes()) {   
                 glist.removeChild(glist.firstChild);
             }
+        },
+        lifecounter : function() {
+            for (var i = 0; i < 10; i++ ){
+                var life = document.createElement("i");
+                life.setAttribute("class","fas fa-heart heartstyle");
+                document.getElementById("heartwrapper").appendChild(life)
+            }
+        },
+        refreshlife : function() {
+            var currentlife = document.getElementById("heartwrapper").childElementCount
+            for (var i = 0; i < 10-currentlife; i++) {
+                var life = document.createElement("i");
+                life.setAttribute("class","fas fa-heart heartstyle");
+                document.getElementById("heartwrapper").appendChild(life)
+            }
+        },
+        correct : function() {
+            var sound = new Audio("../assets/sounds/correct.mp3");
+            sound.play();
+        },
+        incorrect : function() {
+            var sound = new Audio("../assets/sounds/incorrect.wav");
+            sound.play();
         },
         getword : function() {
             var getrandom = function() {
@@ -101,7 +138,6 @@
             for (var i = 0; i < globalcomposer.length; i++) {
                 var lettergroup = document.getElementById("word").childNodes
                 if (lettergroup[i].textContent === userGuess) {
-                    lastguesscorrect = true
                     for (var i = 0; i < globalcomposer.length; i++) {
                         if (lettergroup[i].textContent === userGuess ) {
                         lettergroup[i].setAttribute("class","revealedletter blankspace")
@@ -116,6 +152,7 @@
                             }
                             wins++
                             hangman.cleanup();
+                            hangman.refreshlife();
                             hangman.getword();
                         } else {
                             document.getElementById("word2").innerHTML = ""
@@ -147,7 +184,7 @@
             },              
     }
 
-
+})
 // - Generate blank spaces according to composer name length and play music
 // - Record letter press, only call next function if letter status is either incorrect or correct
 // - Loop through each letter to check if it's correct

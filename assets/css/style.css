@@ -38,20 +38,23 @@ body {
 }
 
 #guesses {
-    margin-top: 1em;
+    margin-top: 2em;
+    margin-left: 0.4em;
+    margin-right: 0.2em;
 }
 
 .letterblock {
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
     text-transform: uppercase;
     font-weight: 900;
-    line-height: 2em;
+    line-height: 3em;
     text-align: center;
     border: 1px solid black;
     color: black;
-    margin: 0.5em;
+    margin: 0.18em;
     border-radius: 0.5em;
+    font-size: 1.1em;
 }
 
 .wrongletterblock {
@@ -63,12 +66,23 @@ body {
     opacity: 0.5;
 }
 
+.heartstyle {
+    font-size: 1.3em;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    color: red;
+    z-index: 100;
+    margin: 0.5em -0.4em 0 0.5em;
+    text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+
 .blankspace {
     display: block;
     margin: 10px;
     border-bottom: 5px solid black;
     width: 5%;
-}
+}       
 
 .blankspace2 {
     border-bottom: 5px solid transparent !important;
@@ -121,11 +135,8 @@ body {
 
 .innerwrapper {
     position: fixed;
-    padding: 20px;
-    height: 0px;
     top: 450px;
-    background: white;
-    opacity: 0.6;
+    background-color:rgba(255, 255, 255, 0.3);
     width: inherit;
 }
 
@@ -172,6 +183,17 @@ header {
     opacity: 0.7;
     z-index: 1;
   }
+/* ID styles */
+  #introtitle {
+    font-family: 'Berkshire Swash', cursive;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+  }
+
+  #intro {
+     margin-left: 1em;
+  }
+
   
   @media (pointer: coarse) and (hover: none) {
     header {
@@ -181,6 +203,7 @@ header {
       display: none;
     }
   }
+  
 
   /* Bootstrap Overrides */
 h5 {
@@ -201,6 +224,7 @@ h5 {
     height: 160px; /* Set the fixed height of the footer here */
     line-height: 160px; /* Vertically center the text there */
     text-align: center;
-    font-size: 3em;
-    font-family: 'Niconne', cursive;
+    font-size: 2em;
+    font-family: 'Berkshire Swash', cursive;
   }
+

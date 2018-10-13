@@ -22,6 +22,7 @@ $(document).ready(function() {
             if (globalcomposer.indexOf(userGuess) === -1) {
                 letterguess.setAttribute("class","letterblock wrongletterblock");   
                 strikes = strikes - 1;
+                hangman.incorrect();
                 var getheart = document.getElementById("heartwrapper");
                 getheart.removeChild(getheart.firstChild);
             } else {
@@ -43,15 +44,16 @@ $(document).ready(function() {
         if (strikes === 0) {
             hangman.youlose()
         }
-        if (wins < 4) {
+        if (wins < 5) {
             hangman.checkletter()
         }
-        if (wins === 4) {
+        if (wins === 5) {
             hangman.youwin()
         }
     }
 
-    // Game Functions
+
+// Game Functions
     var hangman = {
         // Start Game
         start : function() {
@@ -61,11 +63,18 @@ $(document).ready(function() {
         },
         youwin : function () {
             hangman.cleanup()
-            document.getElementById("endmessage").textContent = "You've escaped! You are no longer in treble.";
+            document.getElementById("banner").innerHTML = '';
+            document.getElementById("displayarea").setAttribute("class","innerwrapper rounded innerwrappernobg");
+            document.getElementById("banner").setAttribute("class","rounded-top winbanner")
+            document.getElementById("endmessage").innerHTML = "You've escaped! You are no longer in <i>treble</i>.<button type='button' onclick='playagain()' class='btn btn-link'><i class='fas fa-undo'></i></button>";
         },
         youlose : function () {
             hangman.cleanup()
-            document.getElementById("endmessage").textContent = "You died! Guess this isn't really your forte.";
+            document.getElementById("banner").innerHTML = '';
+            document.getElementById("displayarea").setAttribute("class","rounded innerwrappernobg");
+            document.getElementById("banner").setAttribute("class","rounded-top losebanner")
+            hangman.gameover()
+            document.getElementById("endmessage").innerHTML = "You died! Guess this isn't really your <i>forte</i>.<button type='button' onclick='playagain()' class='btn btn-link'><i class='fas fa-undo'></i></button>";
         },        
         cleanup : function() {
             userGuess = ""
@@ -100,14 +109,28 @@ $(document).ready(function() {
                 document.getElementById("heartwrapper").appendChild(life)
             }
         },
+        // Game Sounds
         correct : function() {
-            var sound = new Audio("../assets/sounds/correct.mp3");
+            var sound = new Audio("./assets/sounds/correct.mp3");
+            sound.volume = 0.1;
             sound.play();
         },
         incorrect : function() {
-            var sound = new Audio("../assets/sounds/incorrect.wav");
+            var sound = new Audio("./assets/sounds/incorrect.wav");
+            sound.volume = 0.1;
             sound.play();
         },
+        complete : function() {
+            var sound = new Audio("./assets/sounds/complete.wav");
+            sound.volume = 0.1;
+            sound.play();
+        },
+        gameover : function() {
+            var sound = new Audio("./assets/sounds/gameover.wav");
+            sound.volume = 0.1;
+            sound.play();
+        },
+        // Main getword function
         getword : function() {
             var getrandom = function() {
                 var random = Math.floor((Math.random() * Object.keys(composers).length));
@@ -121,10 +144,12 @@ $(document).ready(function() {
                         document.getElementById("word").appendChild(blank);
                     }
                 }
+                // Play Composer Track
                 var playTrack = function(x) {
                     var trackurl = composers[x].song
                     var audio = new Audio(trackurl);
                     audio.play();
+                    audio.loop=true;
                     globalaudio = audio
                 }
                 createspace(currentComposer);
@@ -142,6 +167,7 @@ $(document).ready(function() {
                         if (lettergroup[i].textContent === userGuess ) {
                         lettergroup[i].setAttribute("class","revealedletter blankspace")
                         shownletters++;
+                        hangman.correct();
                         if (shownletters === globalcomposer.length){
                             for (var i = 0; i < globalcomposer.length;i++) {
                                 var orig = document.getElementById("word").childNodes;
@@ -151,6 +177,8 @@ $(document).ready(function() {
                                 document.getElementById("word2").setAttribute("class","fadeanswer row justify-content-center wordwrapper")
                             }
                             wins++
+                            console.log(composers)
+                            hangman.complete()
                             hangman.cleanup();
                             hangman.refreshlife();
                             hangman.getword();
@@ -161,7 +189,7 @@ $(document).ready(function() {
                     }
                 } 
             }
-        }
+        },
     }
 
 // Add Composers Here

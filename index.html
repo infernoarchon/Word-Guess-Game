@@ -18,10 +18,9 @@
     <body>
         <div class="wrapper shadow mb-5 bg-white rounded transform row">
             <header id="banner" class="rounded-top">
-                    <div id="heartwrapper"></div>
                     <img class="teaser img-fluid" src="assets/images/concertostart.png">
             </header>
-            <div class="innerwrapper rounded transform">
+            <div id="displayarea" class="innerwrapper rounded transform">
                 <h2 id="introtitle" class="font-weight-light">Classical Hangman</h2>
                 <div id="intro" class="visible"><h5 class="font-weight-light">Uh oh, looks like you've been kidnapped by the evil Concerto and he's tied you to his Giant Piano of Death! Make peace with your god and guess each composer one letter at a time (or die). Press any key to begin...</h5></div>
                 <div id="gameui" class="hidden">
@@ -32,5 +31,10 @@
             </div>
         </div>
         <script types="text/javascript" src="assets/javascript/game.js"></script>
+        <script>
+            function playagain() {
+                location.reload();
+            }
+        </script>
     </body>
 </html>

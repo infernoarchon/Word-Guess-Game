@@ -1,6 +1,7 @@
 $(document).ready(function() {  
   // Global Variables
     var gamestarted = false;
+    var gamestate;
     var allguesses = [];
     var shownletters = 0;
     var userGuess;
@@ -10,10 +11,12 @@ $(document).ready(function() {
     var strikes = 10;
    // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
+        console.log(globalcomposer)
         document.getElementById("word2").setAttribute("class","row justify-content-center wordwrapper")
         document.getElementById("word2").setAttribute("class","hidden")
-        if(allguesses.includes(event.key)) {
-            return
+        // Ignores repeated guesses and invalid
+        if(gamestarted && (allguesses.includes(event.key) || event.keyCode < 65 || event.keyCode > 90)) {
+            return 
         }
         if(globalcomposer && event.keyCode >= 65 && event.keyCode <= 90) {
             userGuess = event.key;
@@ -32,7 +35,7 @@ $(document).ready(function() {
             document.getElementById("guesses").appendChild(letterguess);
             allguesses.push(userGuess)
         }
-        if(gamestarted === false) {
+        if(gamestarted === false && gamestate == null ) {
             hangman.start();
             // Switch to Game UI
             document.getElementById("intro").setAttribute("class","hidden");
@@ -44,11 +47,14 @@ $(document).ready(function() {
         if (strikes === 0) {
             hangman.youlose()
         }
-        if (wins < 5) {
+        if (wins < 10) {
             hangman.checkletter()
         }
-        if (wins === 5) {
+        if (wins === 10) {
             hangman.youwin()
+        }
+        if(event.keyCode === 32 && gamestarted === false) {
+            location.reload()
         }
     }
 
@@ -62,19 +68,23 @@ $(document).ready(function() {
             hangman.getword();
         },
         youwin : function () {
+            gamestarted = false;
+            gamestate = "won";
             hangman.cleanup()
             document.getElementById("banner").innerHTML = '';
             document.getElementById("displayarea").setAttribute("class","innerwrapper rounded innerwrappernobg");
             document.getElementById("banner").setAttribute("class","rounded-top winbanner")
-            document.getElementById("endmessage").innerHTML = "You've escaped! You are no longer in <i>treble</i>.<button type='button' onclick='playagain()' class='btn btn-link'><i class='fas fa-undo'></i></button>";
+            document.getElementById("endmessage").innerHTML = "You've escaped! You are no longer in <i>treble</i>.<div class='playagainmsg blink_me'>Press spacebar to play again</div>";
         },
         youlose : function () {
+            gamestarted = false;
+            gamestate = "lost";
             hangman.cleanup()
             document.getElementById("banner").innerHTML = '';
             document.getElementById("displayarea").setAttribute("class","rounded innerwrappernobg");
             document.getElementById("banner").setAttribute("class","rounded-top losebanner")
             hangman.gameover()
-            document.getElementById("endmessage").innerHTML = "You died! Guess this isn't really your <i>forte</i>.<button type='button' onclick='playagain()' class='btn btn-link'><i class='fas fa-undo'></i></button>";
+            document.getElementById("endmessage").innerHTML = "You died! Guess this isn't really your <i>forte</i>.<div class='playagainmsg blink_me'>Press spacebar to play again</div>";
         },        
         cleanup : function() {
             userGuess = ""
@@ -155,6 +165,7 @@ $(document).ready(function() {
                 createspace(currentComposer);
                 playTrack(currentComposer);
                 globalcomposer = currentComposer;
+                console.log(globalcomposer)
             }
             getrandom();
             delete composers[globalcomposer]
@@ -177,7 +188,6 @@ $(document).ready(function() {
                                 document.getElementById("word2").setAttribute("class","fadeanswer row justify-content-center wordwrapper")
                             }
                             wins++
-                            console.log(composers)
                             hangman.complete()
                             hangman.cleanup();
                             hangman.refreshlife();
@@ -197,19 +207,37 @@ $(document).ready(function() {
     var composers = {
         "mozart": {
             "song":"./assets/sounds/sonatak331.mp3"
-            },
+        },
         "debussy": {
             "song":"./assets/sounds/clairdelune.mp3"
-            },
+        },
         "beethoven": {
             "song":"./assets/sounds/moonlight.mp3"
-            },
+        },
         "tchaikovsky": {
             "song":"./assets/sounds/october.mp3"
-            },
+        },
         "chopin": {
-            "song":"./assets/sounds/balladesop23.mp3"
-            },              
+            "song":"./assets/sounds/notturno2.mp3"
+        },
+        "satie": {
+            "song":"./assets/sounds/gymnopedie1.mp3"
+        },
+        "clementi": {
+            "song":"./assets/sounds/sonatinaop36n1-1.mp3"
+        },
+        "dvorak": {
+            "song":"./assets/sounds/legend01.mp3"
+        },
+        "grieg": {
+            "song":"./assets/sounds/nocturne54.mp3"
+        },
+        "schumann": {
+            "song":"./assets/sounds/traumerei.mp3"
+        },
+        "schubert": {
+            "song":"./assets/sounds/impromptuop90n3.mp3"
+        }     
     }
 
 })

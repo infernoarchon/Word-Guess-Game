@@ -202,10 +202,14 @@ header {
     z-index: 1;
   }
 
-  /* .playagain {
-      position: absolute;
-      top: 10px;
-  } */
+  .playagainmsg {
+      position: fixed;
+      bottom: 39%;
+      left: 42%;
+      font-size: 0.5em;
+      line-height: 0em;
+      font-weight: 300;
+  }
 /* ID styles */
   #introtitle {
     font-family: 'Berkshire Swash', cursive;
@@ -217,6 +221,13 @@ header {
      margin-left: 1em;
   }
 
+  .blink_me {
+    animation: blinker 3s linear infinite;
+  }
+  
+  @keyframes blinker {  
+    50% { opacity: 0; }
+  }
   
   @media (pointer: coarse) and (hover: none) {
     header {

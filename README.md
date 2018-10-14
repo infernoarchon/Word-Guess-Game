@@ -5,4 +5,4 @@
 This is a simple hangman game where the player has to guess a classical composer one letter at a time, starring Concerto the evil musician from little-known adult cartoon Rick and Morty. 
 
 ## Special Thanks
-Special thanks to my classical homies for 400 years of awesome music and Dan and Justin :pray:
+Special thanks to my classical homies for 400 years of awesome music :pray:

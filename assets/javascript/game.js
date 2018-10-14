@@ -20,6 +20,7 @@ $(document).ready(function() {
         }
         if(globalcomposer && event.keyCode >= 65 && event.keyCode <= 90) {
             userGuess = event.key;
+            userGuess = userGuess.toLowerCase();
             // Create Letter Blocks
             var letterguess = document.createElement("div");
             if (globalcomposer.indexOf(userGuess) === -1) {

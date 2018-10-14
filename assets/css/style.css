@@ -203,9 +203,9 @@ header {
   }
 
   .playagainmsg {
-      position: fixed;
-      bottom: 39%;
-      left: 42%;
+      position: absolute;
+      bottom: 25%;
+      left: 39%;
       font-size: 0.5em;
       line-height: 0em;
       font-weight: 300;
@@ -222,9 +222,9 @@ header {
   }
 
   .blink_me {
-    animation: blinker 3s linear infinite;
+    animation: blinker 2.5s linear infinite;
   }
-  
+
   @keyframes blinker {  
     50% { opacity: 0; }
   }

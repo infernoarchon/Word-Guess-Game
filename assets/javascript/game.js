@@ -237,7 +237,31 @@ $(document).ready(function() {
         },
         "schubert": {
             "song":"./assets/sounds/impromptuop90n3.mp3"
-        }     
+        },
+        "mendelssohn": {
+            "song":"./assets/sounds/op62n6.mp3"
+        },
+        "rachmaninoff": {
+            "song":"./assets/sounds/op33n7.mp3"
+        },
+        "brahms": {
+            "song":"./assets/sounds/danzaungh2m-05.mp3"
+        },
+        "shostakovich": {
+            "song":"./assets/sounds/concerto2-3.mp3"
+        },
+        "bach": {
+            "song":"./assets/sounds/inventio08.mp3"
+        },
+        "couperin": {
+            "song":"./assets/sounds/baricades-misterieuses.mp3"
+        },
+        "bertini": {
+            "song":"./assets/sounds/studioop29n11.mp3"
+        },
+        "haydn": {
+            "song":"./assets/sounds/sonatahob6-3.mp3"
+        }                          
     }
 
 })

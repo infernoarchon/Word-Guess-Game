@@ -11,6 +11,7 @@ $(document).ready(function() {
     var strikes = 10;
    // On Key Up, Start the Game or Guess a Letter
     document.onkeyup = function(event) {
+        console.log(gamestarted)
         document.getElementById("word2").setAttribute("class","row justify-content-center wordwrapper")
         document.getElementById("word2").setAttribute("class","hidden")
         // Ignores repeated guesses and invalid
@@ -261,7 +262,10 @@ $(document).ready(function() {
         },
         "haydn": {
             "song":"./assets/sounds/sonatahob6-3.mp3"
-        }                          
+        },
+        "yiruma": {
+            "song":"./assets/sounds/riverflowsinyou.mp3"
+        }                                 
     }
 
 })

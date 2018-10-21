@@ -1,7 +1,5 @@
 # Word-Guess-Game
 
-## Introduction
-
 This is a simple hangman game where the player has to guess a classical composer one letter at a time, starring Concerto the evil musician from popular adult cartoon show Rick and Morty. 
 
 ## Special Thanks

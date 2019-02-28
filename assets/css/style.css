@@ -1,16 +1,29 @@
 /* Global Classes */
 
 body {
-    background: #eee;
+    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 59%, rgba(255, 255, 255, 0.9) 100%), 
+    url('../images/concertobg2.png');
+    background-size: cover;
+    background-color: #000;
+	background-repeat: no-repeat;
+	background-position: center top;
+
 }
 
+.app-bg {
+    position: fixed;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.6;
+    width: 100vw;
+}
 /* Custom Classes */
 .teaser {
     margin-top: -5%;
 }
 
 .winbanner {
-    background-image: url("../images/winscreen.png");
+    background-image: url("../images/winscreen2.png");
     background-size: 110%;
     background-repeat: no-repeat;
     background-position: 50% 32%;
@@ -146,18 +159,18 @@ body {
 
 .wrapper {
     position: fixed;
-    top: 100px;
+    top: 12vh;
     left: 50%;
     margin-left: -450px;
     width: 900px;
-    background: #fff;
+    background: #000;
     overflow: none;
-    height: 500px;
+    height: 75vh;
 }
 
 .innerwrapper {
     position: fixed;
-    top: 450px;
+    top: 65vh;
     background-color:rgba(255, 255, 255, 0.3);
     width: inherit;
 }

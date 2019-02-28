@@ -8,13 +8,26 @@ body {
 	background-repeat: no-repeat;
 	background-position: center top;
 
+
 }
 
+.app-logo {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    z-index: 9999;
+}
+
+  h3 {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 1.25em;
+    color: #ccc;
+}
 .app-bg {
     position: fixed;
     height: 100vh;
     background-color: black;
-    opacity: 0.6;
+    opacity: 0.5;
     width: 100vw;
 }
 /* Custom Classes */
@@ -165,7 +178,7 @@ body {
     width: 900px;
     background: #000;
     overflow: none;
-    height: 75vh;
+    height: 500px;
 }
 
 .innerwrapper {
@@ -233,11 +246,13 @@ header {
       color: #999;
   }
 /* ID styles */
-  #introtitle {
+  #introtitle, h3 {
     font-family: 'Berkshire Swash', cursive;
     margin-left: 0.5em;
-    margin-top: 0.5em;
+    margin-top: 0em;
   }
+
+
 
   #intro {
      margin-left: 1em;
